@@ -1,2 +1,2 @@
 # WorkMC
-Bot du serveur communautaire WorkMC : https://discord.gg/45EUPS4
+> Bot du serveur communautaire WorkMC : https://discord.gg/45EUPS4
