@@ -46,7 +46,7 @@ import fr.dorvak.workmc.utils.database.core.DatabaseManager;
 
 public class WorkMc extends DiscordBot {
 	
-	private static String version = "1.0.5";
+	private static String version = "2.0.0";
 	private static WorkMc INSTANCE;
 	private DatabaseManager databaseManager;
 	private TableManager tableManager;
@@ -69,6 +69,7 @@ public class WorkMc extends DiscordBot {
 	
 	@Override
 	public void onLoad() {
+		getLogger().sendConsoleSuccess("WorkMC loading... v" + version);
 		setToken(Constants.BOT_TOKEN);
 		setGuildId(Constants.GUILD_ID);
 		CommandFactory.setPrefixOnDiscord("!");

@@ -65,7 +65,7 @@ public class MuteCommand extends CommandListener {
 			embed.setDescription(target.getAsMention() + " a été mute par " + user.getAsMention());
 		}
 		
-		muteManager.registerMute(target.getUser().getId(), 365);
+		muteManager.registerMute(target.getUser().getId(), 365*24);
 		channel.sendMessage(embed.build()).queue();
 		DiscordLogger.logCommand(command, args);
 		return CommandResult.SUCCESS;

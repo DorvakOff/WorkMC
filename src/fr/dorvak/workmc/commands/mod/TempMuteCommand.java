@@ -8,6 +8,7 @@ import fr.dorvak.betterjda.lite.commands.CommandSenderType;
 import fr.dorvak.betterjda.lite.commands.listeners.CommandListener;
 import fr.dorvak.betterjda.lite.utils.EmbedHelper;
 import fr.dorvak.workmc.WorkMc;
+import fr.dorvak.workmc.mod.MuteManager;
 import fr.dorvak.workmc.utils.Constants;
 import fr.dorvak.workmc.utils.DiscordLogger;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -60,8 +61,11 @@ public class TempMuteCommand extends CommandListener {
 			command.getMessenger().commandInvalidArgs(command);
 			return CommandResult.INVALID_ARGS;
 		}
-				
-		WorkMc.getInstance().getMuteManager().registerMute(target.getUser().getId(), hours);
+		
+		
+		reason = reason.replace(hours + "", "");
+		
+		MuteManager muteManager = WorkMc.getInstance().getMuteManager();
 		
 		EmbedBuilder embed = EmbedHelper.getBasicEmbed();
 		embed.setColor(Color.red);
@@ -72,8 +76,8 @@ public class TempMuteCommand extends CommandListener {
 			embed.setDescription("Vous avez mute temporairement " + target.getAsMention() + " pendant " + hours + " heures.");
 		}
 		
+		muteManager.registerMute(target.getUser().getId(), hours);
 		channel.sendMessage(embed.build()).queue();
-		
 		DiscordLogger.logCommand(command, args);
 		return CommandResult.SUCCESS;
 	}

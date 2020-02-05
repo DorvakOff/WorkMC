@@ -40,4 +40,29 @@ public class DiscordLogger {
 		logChannel.sendMessage(embed.build()).queue();
 	}
 
+	public static void log(LogAction action, String message) {
+		EmbedBuilder embed = EmbedHelper.getBasicEmbed();
+		embed.setColor(Color.red);
+		embed.setTitle(action.getDisplay());
+		
+		embed.addField("", "> " + message, false);
+		logChannel.sendMessage(embed.build()).queue();
+	}
+	
+	public static enum LogAction {
+		AUTO_LOG("Action automatique"),
+		INFO_LOG("Log d'information"),
+		;
+		
+		private String display;
+		
+		LogAction(String display){
+			this.display = display;
+		}
+		
+		public String getDisplay() {
+			return display + " :";
+		}
+	}
+
 }
